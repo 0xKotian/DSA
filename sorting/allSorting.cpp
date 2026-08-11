@@ -5,14 +5,19 @@ below code represents all the sorting techniques
 swap the starting element and the smallest element. TIME COMPLEXITY => O(n^2).
 
 2. bubble sort logic -> we push the max element to he last then then move the pointer (here i) to the right side, this pushing the max element to last is done by 
-adjasent comparing and swaping.  
+adjasent comparing and swaping. TIME COMPLEXITY => O(n^2).
+
+3. insertion sort logic -> first we take starting 2 elements and we check and sort, the nstarting 3 elements and check the elements and sort from right to left.
+TIME COMPLEXITY => O(n^2).
+
+
 */
 
 
 #include<bits/stdc++.h>
 using namespace std;
 
-int temp;
+int temp; // global varibable can be used in any of the user defined functions without declaring 
 
 void selection_sort(int a[], int n){
     int mini,i,j;
@@ -49,10 +54,27 @@ void bubble_sort(int a[], int n){
     } 
 }
 
+void insertion_sort(int a[], int n){
+    int i,j;
+    for(i = 0; i < n; i++){
+        j=i;
+        while(j > 0 && a[j-1] > a[j]){
+            temp = a[j-1];
+            a[j-1] = a[j];
+            a[j] = temp;
+            j--; 
+        }
+    }
+    for(i = 0; i < n; i++){
+        cout<<a[i]<<" ";
+    } 
+}
+
 int main() { 
     int n=5;
     int a[5] = {54,21,46,37,12};
     //selection_sort(a,n);
-    bubble_sort(a,n);
+    //bubble_sort(a,n);
+    insertion_sort(a,n);
     return 0;
 }
