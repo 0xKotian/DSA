@@ -1,3 +1,6 @@
+/*
+first we divide the array until there is only one element left (dividing the array is done by indexing). then we merg the array by comparing  
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
