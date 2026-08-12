@@ -1,6 +1,10 @@
 /*
 left rotating of the array d times is done by first rotating the array till the dth element and then rotating the elements after dth element and then finally 
 rotating all the elements  
+for right rotate:
+reverse(a,0,n-1-d);
+reverse(a,d+1,n-1);
+reverse(a,0,n-1);
 */
 #include<bits/stdc++.h>
 using namespace std;
