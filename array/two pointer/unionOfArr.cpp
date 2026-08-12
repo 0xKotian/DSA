@@ -6,6 +6,23 @@ differ in both the array then compare both the element and print the smallest el
 #include<bits/stdc++.h>
 using namespace std;
 
+// void intersectionofarr(int a[], int b[], int n, int m){ 
+//     int i=0,j=0;
+//     while(i < n && j < m){
+//         if(a[i] > b[j]){
+//             j++;
+//         }
+//         else if(a[i] < b[j]){
+//             i++;
+//         }
+//         else{
+//             cout<<a[i]<<" ";
+//             i++;
+//             j++;
+//         }
+//     }
+// }
+
 void unionofarr(int a[], int b[], int n, int m){
     int i=0,j=0;
     while(i < n && j < m){
@@ -48,4 +65,5 @@ int main(){
     int n = 6, a[n] = {1,1,2,3,4,5};
     int m = 6, b[m] = {2,3,4,4,5,6};
     unionofarr(a,b,n,m);
+    //intersectionofarr(a,b,n,m);
 }
