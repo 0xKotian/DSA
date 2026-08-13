@@ -1,5 +1,9 @@
 /*
-merge overlapping intervals we need to find the 
+merge overlapping intervals we need to find the interval that combines or covers multiple intervals.
+
+logic -> first sort the arr and then push the pair to ans arr only if its the first pair or when the starting element of the pair is greater than the ending 
+element of the pair stored in the ans arr, that means the pair cannot be overlapped. to overlap the pairs change the ending element of the pair stored inthe 
+ans with the ending element of the current iterating pair only if the ending element of the pair is greater than the ending element of the pair in ans arr. 
 */
 #include<bits/stdc++.h>
 using namespace std;

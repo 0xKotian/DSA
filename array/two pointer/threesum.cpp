@@ -1,7 +1,7 @@
 /*
 the three sum probelem states to print 3 numbers whose sum is 0,but the elements should not be repeated.
 logic-> for elements not to be repeated we first sort the array and i will be at starting and j will be iterating from i+1 and k will be iterating from n-1
-every iteration of i the element should not be same so we run the continue contition(line 13). when we find the sum we j++ and k-- until we get new element 
+every iteration of i the element should not be same so we run the continue condetion(line 13). when we find the sum we j++ and k-- until we get new element 
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -10,7 +10,7 @@ void threesum(vector<int> &a, int n){
     vector<vector<int>> ans;
     sort(a.begin(),a.end());
     for(int i=0;i<n;i++){
-        if(i>0 && a[i] == a[i-1]) continue;//every iteration ith elementin arr should not be same,so continue till ith element is different
+        if(i>0 && a[i] == a[i-1]) continue;//every iteration ith element in arr should not be same,so continue till ith element is different
         int j = i+1;
         int k = n-1;
         while(j < k){
