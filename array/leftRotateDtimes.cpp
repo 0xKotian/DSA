@@ -5,6 +5,11 @@ for right rotate:
 reverse(a,0,n-1-d);
 reverse(a,d+1,n-1);
 reverse(a,0,n-1);
+
+if u use vector<int> u can use the in built stl (reverse works in range => [first,last))
+reverse(a.begin(),a.begin(+d)) -> 3 2 1 4 5 6 7
+reverse(a.begin()+d,a.end()) -> 3 2 1 7 6 5 4
+reverse(a.begin(),a.end()) -> 4 5 6 7 1 2 3
 */
 #include<bits/stdc++.h>
 using namespace std;
