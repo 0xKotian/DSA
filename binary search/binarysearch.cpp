@@ -1,5 +1,7 @@
 /*
 binary search algorithem using loops or using recursion.
+given arr should be sorted in order to perform binary search algo.
+TC -> O(logn)
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -20,7 +22,7 @@ int problem(int a[],int n,int target,int low, int high){
 
 int binarysearch_loop(int a[], int n , int target){
     int mid,low=0,high=n-1;
-    while(low < high){
+    while(low <= high){
         mid = (low + high)/2;
         if(a[mid] == target) return mid+1;
         else if(a[mid] > target) high = mid-1;
