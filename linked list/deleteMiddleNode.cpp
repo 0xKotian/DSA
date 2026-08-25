@@ -1,3 +1,7 @@
+/*
+these both problem uses TORTOISE HARE method. fast pointer moves d distance(moves 2 step forward at once) then slow pointer moves d/2 distance(moves one step
+forward at once).
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -25,7 +29,7 @@ node* DeleteMiddleNode(node* head){
     if(head == nullptr || head->next == nullptr) return NULL;
     node* slow = head;
     node* fast = head;
-    fast = fast->next->next;
+    fast = fast->next->next;// by thiswe skip the first step of slow, so that it ends at the previous node of middle node.
     while(fast != nullptr && fast->next != nullptr){
         slow = slow->next;
         fast = fast->next->next;

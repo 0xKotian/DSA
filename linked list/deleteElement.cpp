@@ -1,3 +1,6 @@
+/*
+if the given question is to remove kth ele from the last then do K = n - k + 1. and now follow remove the Kth ele from front.  
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
