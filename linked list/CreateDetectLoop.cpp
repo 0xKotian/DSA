@@ -45,19 +45,40 @@ void detectloop(node* head){
         slow = slow->next;
         fast = fast->next->next;
         if(fast == slow){
-            cout<<"loop detected";
+            cout<<"loop detected"<<endl;
             return;
         }
     }
-    cout<<"loop not detected";
+    cout<<"loop not detected"<<endl;
     return;
 }
 
+void looplength(node* head){
+    node* fast = head;
+    node* slow = head;
+    while(fast != nullptr && fast->next != nullptr){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(fast == slow){
+            int cnt = 1;
+            fast = fast->next;
+            while(fast != slow){
+                fast = fast->next;
+                cnt++;
+            }
+            cout<<"length of loop is "<<cnt;
+            return;
+        }
+    }
+    cout<<"loop not detected ";
+}
+
 int main(){
-    vector<int> a = {12,8,5,9};
+    vector<int> a = {12,8,5,9,6};
     int n = a.size();
     int pos = 2;
     node* head = gethead(a,n);
     head = createloop(head,pos);
     detectloop(head);
+    looplength(head);
 }
