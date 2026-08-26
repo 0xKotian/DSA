@@ -53,7 +53,7 @@ void detectloop(node* head){
     return;
 }
 
-void looplength(node* head){
+void looplength(node* head){ // when fast and slow ptr meet, move only fast ptr one step at a time and cnt till fast meets slow. 
     node* fast = head;
     node* slow = head;
     while(fast != nullptr && fast->next != nullptr){
@@ -66,11 +66,30 @@ void looplength(node* head){
                 fast = fast->next;
                 cnt++;
             }
-            cout<<"length of loop is "<<cnt;
+            cout<<"length of loop is "<<cnt<<endl;
             return;
         }
     }
-    cout<<"loop not detected ";
+    cout<<"loop not detected "<<endl;
+}
+
+void loop_ele(node* head){ // when fast and slow ptr meet, initialize slow to head and move slow and fast ptr one step at a time till fast meets slow. 
+    node* fast = head;
+    node* slow = head;
+    while(fast != nullptr && fast->next != nullptr){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(fast == slow){
+           slow = head;
+           while(fast != slow){
+            slow = slow->next;
+            fast = fast->next;
+           }
+           cout<<"loop ele is "<<fast->data;
+           return;
+        }
+    }
+    cout<<"loop not detected "<<endl;
 }
 
 int main(){
@@ -81,4 +100,5 @@ int main(){
     head = createloop(head,pos);
     detectloop(head);
     looplength(head);
+    loop_ele(head);
 }
