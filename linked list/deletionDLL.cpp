@@ -57,12 +57,31 @@ node* RemoveKth(node* head, int k){
     return head;
 }
 
+node* removeELE(node* head, int ele){
+    if(head == nullptr) return head;
+    node* temp = head;
+    while(temp != nullptr){
+        if(temp->data == ele){
+            if(temp == head) head = head->next; 
+            node* front = temp->next;
+            node* prev = temp->back;
+            if(front != nullptr) front->back = prev;
+            if(prev != nullptr) prev->next = front;
+            delete temp;
+            temp = front;
+        }
+        else temp = temp->next;
+    }
+    return head;
+}
+
 void printLL(node* head){
     node* temp = head;
     while(temp != nullptr){
         cout<<temp->data<<" ";
         temp = temp->next;
     }
+    cout<<endl;
 }
 
 int main(){
@@ -72,4 +91,11 @@ int main(){
     node* head = convertArrtoDLL(a,n);
     head = RemoveKth(head,k);
     printLL(head);
+
+    vector<int> b = {10,6,10,10,4,10,1};
+    int m = b.size();
+    int ele = 10;
+    node* head1 = convertArrtoDLL(b,m);
+    head1 = removeELE(head1,ele);
+    printLL(head1);
 }
