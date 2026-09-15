@@ -12,7 +12,7 @@ int largestsubstring(string s){
     int l = 0, r = 0, maxlen = 0;
     while(r < n){
         if(mpp.find(s[r]) != mpp.end()){// means s[r] char is present in the mpp
-            if(mpp[s[r]] >= l) l = mpp[s[r]]+1;// if the last accurance index of the char is >= l then l is +1 index of that char. 
+            if(mpp[s[r]] >= l) l = mpp[s[r]]+1;// if the last accurance index of the char is >= l then l is +1 index of that char
         }
         maxlen = max(maxlen,r-l+1);
         mpp[s[r]] = r;
