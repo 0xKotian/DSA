@@ -2,12 +2,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Graph{
+class UndirectedGraph{
 private: 
     int V; // total number of vertices in the graph
     list<int> *l;
 public :
-    Graph(int V){ // this->V refer to the V defined inside the private section of class and RHS V is the value from the object
+    UndirectedGraph(int V){ // this->V refer to the V defined inside the private section of class and RHS V is the value from the object
         this->V = V;
         l = new list<int> [V]; // creates an array of list with V number of list . [] refers to array
     }
@@ -125,8 +125,53 @@ public :
     }
 };
 
+class DirectedGraph{
+    int V; // total number of vertices in the graph
+    list<int> *l;
+public :
+    DirectedGraph(int V){ // this->V refer to the V defined inside the private section of class and RHS V is the value from the object
+        this->V = V;
+        l = new list<int> [V]; // creates an array of list with V number of list . [] refers to array
+    }
+
+    void addEdge(int a, int b){
+        l[a].push_back(b); // a-->b means b is stored as neighbour of a, but a is not stored as neighbour of b in directed graph
+    }
+
+    bool iscycleDFS(int current, vector<bool> &vis, vector<bool> &reccursionPath){ // checks for every neighbour marking it true in both vis and reccursioPath, when the neighbour is already visited then check if its there in reccursionPth, if yes then there is a loop detected. 
+        vis[current] = true;
+        reccursionPath[current] = true;
+        for(int neighbour : l[current]){
+            if(vis[neighbour] == false){
+                if(iscycleDFS(neighbour,vis,reccursionPath) == true){
+                    return true;
+                }
+            }
+            else if(reccursionPath[current] == true){
+                return true;
+            }
+        }
+        reccursionPath[current] = false;
+        return false;
+    }
+
+    bool iscycle(){
+        vector<bool> vis(V,false);
+        vector<bool> reccursionPath(V,false);
+
+        for(int i=0;i<V;i++){
+            if(vis[i] == false){
+                if(iscycleDFS(i,vis,reccursionPath) == true){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
 int main(){
-    Graph g(5);
+    UndirectedGraph g(5);
     g.addEdge(0,1);
     g.addEdge(1,2);
     g.addEdge(1,3);
@@ -138,7 +183,7 @@ int main(){
     cout<<"dfs"<<endl;
     g.dfs();
 
-    Graph g1(5);
+    UndirectedGraph g1(5);
     g1.addEdge(0,1);
     g1.addEdge(1,2);
     g1.addEdge(2,0);
@@ -146,4 +191,11 @@ int main(){
     g1.addEdge(3,4);
     cout<<"check for loop"<<endl;
     cout<<g1.iscycle()<<" [ 1 means loop detected and 0 means loop not detected ]"<<endl;
+
+    DirectedGraph g2(4);
+    g2.addEdge(1,0);
+    g2.addEdge(0,2);
+    g2.addEdge(2,3);
+    g2.addEdge(3,0);
+    cout<<g2.iscycle()<<" [ 1 means loop detected and 0 means loop not detected ]"<<endl;
 }
