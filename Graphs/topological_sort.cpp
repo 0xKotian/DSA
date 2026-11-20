@@ -46,6 +46,45 @@ public :
         }
         cout<<endl;
     }
+/*
+topological sort using khan's algorithem uses bfs. for ever node calculate the indegree i.e the incoming edge, then push 
+the node val in q that has indegree 0, in while loop perform bfs currnt will be q.front then pop it out and pushback to res, 
+for every current node that is added to res and poped out from q decrease their neighbour's indegree count, 
+when their neighbours indegree count decreases to 0 push them to q. finally display res
+*/
+    void topoSortKhanAlgo(){
+        vector<int> res;
+        queue<int> q;
+        vector<int> indegree(V,0);
+        for(int i=0;i<V;i++){
+            for(int neighbour : l[i]){ // if there is a neighbour of i then increase the inorder of that neighbour
+                indegree[neighbour]++;
+            }
+        }
+        // push val in q whose indegree is 0
+        for(int i=0;i<V;i++){
+            if(indegree[i] == 0){
+                q.push(i);
+            }
+        }
+
+        while(q.size() > 0){ 
+            int current = q.front();
+            q.pop();
+            res.push_back(current);
+            for(int neighbour : l[current]){
+                indegree[neighbour]--;
+                if(indegree[neighbour] == 0){
+                    q.push(neighbour);
+                }
+            }
+        }
+
+        for(int val : res){
+            cout<<val<<" ";
+        }
+        cout<<endl;
+    }
 };
 
 int main(){
@@ -56,5 +95,8 @@ int main(){
     g.addEdge(2,3);
     g.addEdge(3,1);
     g.addEdge(4,1);
+    cout<<"topological sort using dfs : ";
     g.topoSort();
+    cout<<"topological sort using khan's algorithem (bfs) : ";
+    g.topoSortKhanAlgo();
 }
